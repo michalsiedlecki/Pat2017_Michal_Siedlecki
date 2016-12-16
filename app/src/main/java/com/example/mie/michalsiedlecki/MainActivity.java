@@ -1,7 +1,7 @@
 package com.example.mie.michalsiedlecki;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onStartGameButtonClick(View view){
+    public void onStartGameButtonClick(View view) {
         Toast.makeText(MainActivity.this, "Maybe someday...",
                 Toast.LENGTH_LONG).show();
     }
