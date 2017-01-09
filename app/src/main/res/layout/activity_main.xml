@@ -17,8 +17,31 @@
         android:onClick="onStartGameButtonClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/buttonStartGame"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="182dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="85dp"
-        android:id="@+id/buttonStartGame" />
+        android:layout_marginTop="26dp"
+        android:id="@+id/editText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:layout_above="@+id/buttonStartGame"
+        android:layout_alignLeft="@+id/buttonStartGame"
+        android:layout_alignStart="@+id/buttonStartGame"
+        android:layout_marginBottom="55dp"
+        android:id="@+id/editText2" />
 </RelativeLayout>

@@ -2,29 +2,25 @@ package com.example.mie.michalsiedlecki;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
     }
 
-    public void onStartGameButtonClick(View view) {
+    public void onLogoutButtonClick(View view) {
         SharedPreferences loginStatus = getSharedPreferences("data", 0);
         SharedPreferences.Editor editorLoginStatus = loginStatus.edit();
-        editorLoginStatus.putBoolean("loginStatus", true);
+        editorLoginStatus.putBoolean("loginStatus", false);
         editorLoginStatus.commit();
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
-
-
 }

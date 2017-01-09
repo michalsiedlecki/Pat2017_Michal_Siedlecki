@@ -2,6 +2,7 @@ package com.example.mie.michalsiedlecki;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import java.util.Timer;
@@ -19,10 +20,23 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences loginStatus = getSharedPreferences("data", 0);
+        if(loginStatus.getBoolean("loginStatus", false) == true){
+            openHomeActivity();
+            finish();
+            return;
+        }
         setContentView(R.layout.activity_splash);
 
         timer = new Timer();
         timer.schedule(new CloseSplash(), SPLASH_TIME_CLOSE);
+    }
+
+
+    private void openHomeActivity(){
+        Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+        SplashActivity.this.startActivity(intent);
+        SplashActivity.this.finish();
     }
 
     @Override
@@ -38,7 +52,7 @@ public class SplashActivity extends Activity {
             openMainActivity();
         }
 
-        public void waitForCloseSplash(){
+        private void waitForCloseSplash(){
             try {
                 Thread.sleep(SPLASH_TIME_CLOSE);
             }
@@ -47,7 +61,7 @@ public class SplashActivity extends Activity {
             }
         }
 
-        public void openMainActivity(){
+        private void openMainActivity(){
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             SplashActivity.this.startActivity(intent);
             SplashActivity.this.finish();
