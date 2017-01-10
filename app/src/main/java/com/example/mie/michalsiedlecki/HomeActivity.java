@@ -15,10 +15,18 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onLogoutButtonClick(View view) {
+        logout();
+        openMainActivity();
+    }
+
+    public void logout(){
         SharedPreferences loginStatus = getSharedPreferences("data", 0);
         SharedPreferences.Editor editorLoginStatus = loginStatus.edit();
         editorLoginStatus.putBoolean("loginStatus", false);
         editorLoginStatus.commit();
+    }
+
+    public void openMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

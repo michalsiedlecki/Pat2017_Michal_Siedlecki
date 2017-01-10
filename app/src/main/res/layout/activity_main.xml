@@ -12,36 +12,55 @@
     tools:context="com.example.mie.michalsiedlecki.MainActivity">
 
 
-    <Button
-        android:background="@drawable/start_game_image"
-        android:onClick="onStartGameButtonClick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonStartGame"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="182dp" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="E-mail"
         android:ems="10"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp"
         android:id="@+id/editText" />
 
+    <Button
+        android:background="@drawable/start_game_image"
+        android:onClick="onStartGameButtonClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonStartGame"
+        android:layout_marginBottom="138dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/editText"
+        android:layout_alignEnd="@+id/editText" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_below="@+id/editText"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="Password"
         android:ems="10"
-        android:layout_above="@+id/buttonStartGame"
-        android:layout_alignLeft="@+id/buttonStartGame"
-        android:layout_alignStart="@+id/buttonStartGame"
-        android:layout_marginBottom="55dp"
-        android:id="@+id/editText2" />
+        android:id="@+id/editText2"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_alignStart="@+id/editText2"
+        android:layout_below="@+id/editText2" />
 </RelativeLayout>
