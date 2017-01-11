@@ -4,67 +4,52 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
-/**
- * Created by MIE on 13-Dec-16.
- */
+import android.os.Handler;
 
 public class SplashActivity extends Activity {
 
     private static int SPLASH_TIME_CLOSE = 5000;
-    Timer timer;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences loginStatus = getSharedPreferences("data", 0);
-        if(loginStatus.getBoolean("loginStatus", false) == true){
+        if(loginStatus.getBoolean("loginStatus", false)){
             openHomeActivity();
             finish();
             return;
         }
         setContentView(R.layout.activity_splash);
-
-        timer = new Timer();
-        timer.schedule(new CloseSplash(), SPLASH_TIME_CLOSE);
+        handler.postDelayed(new Runnable(){
+            @Override
+            public void run() {
+               openMainActivity();
+            }
+        }, SPLASH_TIME_CLOSE);
     }
 
 
     private void openHomeActivity(){
-        Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-        SplashActivity.this.startActivity(intent);
-        SplashActivity.this.finish();
+        Intent intent = new Intent(this, HomeActivity.class);
+        this.startActivity(intent);
+        finish();
+    }
+
+    private void openMainActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
+        finish();
     }
 
     @Override
     public void onBackPressed() {
-        timer.cancel();
+        handler.removeCallbacksAndMessages(null);
     }
 
-    private class CloseSplash extends TimerTask {
-
-        @Override
-        public void run() {
-            waitForCloseSplash();
-            openMainActivity();
-        }
-
-        private void waitForCloseSplash(){
-            try {
-                Thread.sleep(SPLASH_TIME_CLOSE);
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        private void openMainActivity(){
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-            SplashActivity.this.startActivity(intent);
-            SplashActivity.this.finish();
-        }
+    @Override
+    protected void onPause() {
+        handler.removeCallbacksAndMessages(null);
+        super.onPause();
     }
 }

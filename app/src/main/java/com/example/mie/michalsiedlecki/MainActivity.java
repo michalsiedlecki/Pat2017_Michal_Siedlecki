@@ -52,41 +52,34 @@ public class MainActivity extends AppCompatActivity {
 
     public String checkEmail() {
         String emailFromET = email.getText().toString();
-         if(Patterns.EMAIL_ADDRESS.matcher(emailFromET).matches()== false)
+        if(!Patterns.EMAIL_ADDRESS.matcher(emailFromET).matches())
              return EMAIL_ERROR;
-         else
-             return "";
+
+        return "";
     }
 
     public String checkPassword(){
         String passwordFromET = password.getText().toString();
 
-        if((passwordFromET.length() < 8)){
+        if((passwordFromET.length() < 8))
             return LENGHT_ERROR;
-        }
-        if(!passwordFromET.matches(".*[a-z]+.*")){
+
+        if(!passwordFromET.matches(".*[a-z]+.*"))
             return LOWER_CASE_LETTER_ERROR;
 
-        }
-        if(!passwordFromET.matches(".*[A-Z]+.*")){
+        if(!passwordFromET.matches(".*[A-Z]+.*"))
             return CAPITAL_LETTER_ERROR;
 
-        }
-        if(!passwordFromET.matches(".*[0-9]+.*")){
+        if(!passwordFromET.matches(".*[0-9]+.*"))
             return DIGIT_ERROR;
 
-        }
-        else{
-            return ("");
+        return ("");
 
-        }
     }
 
     public boolean checkErrorMessage(){
-        if (passwordError.length() > 0 || emailError.length() > 0)
-            return false;
-        else
-            return true;
+        return !(passwordError.length() > 0 || emailError.length() > 0);
+
     }
 
     public void login(){

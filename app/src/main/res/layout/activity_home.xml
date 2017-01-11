@@ -12,7 +12,7 @@
     tools:context="com.example.mie.michalsiedlecki.HomeActivity">
 
     <Button
-        android:background="@drawable/start_game_image"
+        android:background="@drawable/logout_image"
         android:onClick="onLogoutButtonClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
