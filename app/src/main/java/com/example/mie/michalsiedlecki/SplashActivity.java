@@ -21,12 +21,6 @@ public class SplashActivity extends Activity {
             return;
         }
         setContentView(R.layout.activity_splash);
-        handler.postDelayed(new Runnable(){
-            @Override
-            public void run() {
-               openMainActivity();
-            }
-        }, SPLASH_TIME_CLOSE);
     }
 
 
@@ -42,6 +36,15 @@ public class SplashActivity extends Activity {
         finish();
     }
 
+    private void lateOpenMainActvity(){
+        handler.postDelayed(new Runnable(){
+            @Override
+            public void run() {
+                openMainActivity();
+            }
+        }, SPLASH_TIME_CLOSE);
+    }
+
     @Override
     public void onBackPressed() {
         handler.removeCallbacksAndMessages(null);
@@ -52,4 +55,11 @@ public class SplashActivity extends Activity {
         handler.removeCallbacksAndMessages(null);
         super.onPause();
     }
+
+    @Override
+    protected void onResume() {
+        lateOpenMainActvity();
+        super.onResume();
+    }
+
 }
