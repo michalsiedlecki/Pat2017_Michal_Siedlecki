@@ -35,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
     public void onStartGameButtonClick(View view) {
         writePasswordError(checkPassword());
         writeEmailError(checkEmail());
-        if (!checkErrorMessage())
+        if (!checkErrorMessage()){
             return;
+        }
 
         login();
         openHomeActivity();
@@ -52,8 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
     public String checkEmail() {
         String emailFromET = email.getText().toString();
-        if(!Patterns.EMAIL_ADDRESS.matcher(emailFromET).matches())
+        if(!Patterns.EMAIL_ADDRESS.matcher(emailFromET).matches()){
              return EMAIL_ERROR;
+        }
 
         return "";
     }
@@ -61,17 +63,21 @@ public class MainActivity extends AppCompatActivity {
     public String checkPassword(){
         String passwordFromET = password.getText().toString();
 
-        if((passwordFromET.length() < 8))
+        if((passwordFromET.length() < 8)){
             return LENGHT_ERROR;
+        }
 
-        if(!passwordFromET.matches(".*[a-z]+.*"))
+        if(!passwordFromET.matches(".*[a-z]+.*")){
             return LOWER_CASE_LETTER_ERROR;
+        }
 
-        if(!passwordFromET.matches(".*[A-Z]+.*"))
+        if(!passwordFromET.matches(".*[A-Z]+.*")){
             return CAPITAL_LETTER_ERROR;
+        }
 
-        if(!passwordFromET.matches(".*[0-9]+.*"))
+        if(!passwordFromET.matches(".*[0-9]+.*")){
             return DIGIT_ERROR;
+        }
 
         return ("");
 

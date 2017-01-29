@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background_image"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,17 +11,6 @@
     tools:context="com.example.mie.michalsiedlecki.MainActivity">
 
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/email"
-        android:ems="10"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:id="@+id/editText" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,18 +20,6 @@
         android:layout_below="@+id/editText"
         android:layout_alignLeft="@+id/editText"
         android:layout_alignStart="@+id/editText" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/password"
-        android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginTop="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,13 +32,56 @@
         android:layout_below="@+id/editText2" />
 
     <Button
-        android:background="@drawable/login_image"
         android:onClick="onStartGameButtonClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonStartGame"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="80dp"
+        android:text="@string/login"
         android:layout_below="@+id/textView2"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2" />
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="@string/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/labelEmail"
+        android:layout_marginBottom="57dp"
+        android:layout_above="@+id/textView"
+        android:layout_alignStart="@+id/editText"
+        android:layout_alignLeft="@+id/editText" />
+
+    <TextView
+        android:text="@string/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/labelPassword"
+        android:layout_marginStart="17dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="17dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/labelPassword"
+        android:layout_alignStart="@+id/labelPassword"
+        android:layout_alignLeft="@+id/labelPassword" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginTop="129dp"
+        android:id="@+id/editText"
+        android:selectAllOnFocus="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/labelPassword"
+        android:layout_alignLeft="@+id/labelPassword" />
 </RelativeLayout>

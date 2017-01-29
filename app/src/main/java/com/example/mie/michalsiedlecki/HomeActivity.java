@@ -11,8 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -32,33 +32,26 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private ListView homeListView;
+    private GridView homeListView;
     //IP for emulator
     //public final static String BASE_SERVER_URL = "http://10.0.2.2:8080/page_0.json";
     //IP for phone
-    public final static String BASE_SERVER_URL = "http://192.168.15.36:8080/page_0.json";
+    public final static String BASE_SERVER_URL = "http://192.168.1.101:8080/page_0.json";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-        .cacheInMemory(true)
-                .cacheOnDisk(true)
-        .build();
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
-        .defaultDisplayImageOptions(defaultOptions)
-        .build();
-        ImageLoader.getInstance().init(config); // Do it on Application start
+        homeListView = (GridView)findViewById(R.id.homeListView);
 
-        homeListView = (ListView)findViewById(R.id.homeListView);
+        cachedImage();
         new JSONTask().execute(BASE_SERVER_URL);
     }
 
@@ -80,12 +73,24 @@ public class HomeActivity extends AppCompatActivity {
         finish();
     }
 
+    public void cachedImage(){
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .build();
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+                .defaultDisplayImageOptions(defaultOptions)
+                .build();
+        ImageLoader.getInstance().init(config);
+    }
+
     public class  JSONTask extends AsyncTask<String, String, List<HomeModel>>{
 
         @Override
         protected List<HomeModel> doInBackground(String... params){
             HttpURLConnection connection = null;
             BufferedReader reader = null;
+            String line;
 
             try {
                 URL url = new URL(params[0]);
@@ -94,7 +99,7 @@ public class HomeActivity extends AppCompatActivity {
                 InputStream stream = connection.getInputStream();
                 reader = new BufferedReader(new InputStreamReader(stream));
                 StringBuffer buffer = new StringBuffer();
-                String line ="";
+
                 while ((line = reader.readLine()) != null){
                     buffer.append(line);
                 }
@@ -117,11 +122,7 @@ public class HomeActivity extends AppCompatActivity {
 
                 return homeModelList;
 
-            }catch (MalformedURLException e){
-                e.printStackTrace();
-            }catch (IOException e){
-                e.printStackTrace();
-            } catch (JSONException e) {
+            } catch (IOException | JSONException e){
                 e.printStackTrace();
             } finally{
                 if (connection != null){
@@ -154,7 +155,7 @@ public class HomeActivity extends AppCompatActivity {
         private List<HomeModel> homeModelList;
         private int resource;
         private LayoutInflater infalter;
-        public ItemAdapter(Context context, int resource, List<HomeModel> objects) {
+        ItemAdapter(Context context, int resource, List<HomeModel> objects) {
             super(context, resource, objects);
             homeModelList = objects;
             this.resource = resource;
